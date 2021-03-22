@@ -18,6 +18,23 @@ class GetDataService(data_pb2_grpc.GetDataService):
         # Total number of over 18
         self.over_count = 0
 
+    def talk_to_server():
+        with grpc.insecure_channel('localhost:50052') as server_channel:
+            stub = data_pb2_grpc.GetDataServiceStub(server_channel)
+
+            while True:
+                try: 
+                    response = stub.GetData(data_pb2.Posts(posts=message))
+
+                    print("Data.py: ", response.received)
+
+                except KeyboardInterrupt:
+                    print("\nKeyboardInterrupt")
+                    server_channel.unsubscribe(close)
+                    exit()
+
+    def close(server_channel):
+        server_channel.close()
 
     def GetData(self, request, context):
         posts = request.posts
