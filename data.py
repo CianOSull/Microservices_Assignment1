@@ -10,7 +10,34 @@ def run():
 
         while True:
             try: 
-                response = stub.GetData(data_pb2.Posts(posts="Test"))
+                # Set how many posts to read
+                # num_of_posts = random.randint(2,10)
+                num_of_posts = 1
+
+                data = open("r_dataisbeautiful_posts.csv")
+
+                file_lines = data.readlines()
+
+                # The first line of the file is the headings
+                # id, title, score, author, author_flair_text, removed_by, total_awards_received, awarders, created_utc, full_link, num_comments,over_18
+                headings = file_lines.pop(0)
+
+                counter = 0
+
+                message = ""
+
+                for line in file_lines:
+                    # Counter of posts
+                    if(counter == num_of_posts):
+                        break
+
+                    message += line + " @ "
+
+                    counter+= 1
+                
+                data.close()
+
+                response = stub.GetData(data_pb2.Posts(posts=message))
                 print("Data.py: ", response.received)
                 time.sleep(10)
             except KeyboardInterrupt:
