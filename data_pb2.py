@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\ndata.proto\"\x16\n\x05Posts\x12\r\n\x05posts\x18\x01 \x01(\t\"6\n\x0c\x43heckReponse\x12\x14\n\x0c\x63heckreponse\x18\x01 \x01(\t\x12\x10\n\x08received\x18\x02 \x01(\x08\x32\x34\n\x0eGetDataService\x12\"\n\x07GetData\x12\x06.Posts\x1a\r.CheckReponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\ndata.proto\"\x16\n\x05Posts\x12\r\n\x05posts\x18\x01 \x01(\t\" \n\x0c\x43heckReponse\x12\x10\n\x08received\x18\x01 \x01(\x08\"\x1a\n\x07Metrics\x12\x0f\n\x07metrics\x18\x01 \x01(\t\"!\n\rServerReponse\x12\x10\n\x08response\x18\x01 \x01(\x08\x32\x34\n\x0eGetDataService\x12\"\n\x07GetData\x12\x06.Posts\x1a\r.CheckReponse\"\x00\x32;\n\x10GetMetricService\x12\'\n\tGetMetric\x12\x08.Metrics\x1a\x0e.ServerReponse\"\x00\x62\x06proto3'
 )
 
 
@@ -66,15 +66,8 @@ _CHECKREPONSE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='checkreponse', full_name='CheckReponse.checkreponse', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='received', full_name='CheckReponse.received', index=1,
-      number=2, type=8, cpp_type=7, label=1,
+      name='received', full_name='CheckReponse.received', index=0,
+      number=1, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -92,11 +85,77 @@ _CHECKREPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=38,
-  serialized_end=92,
+  serialized_end=70,
+)
+
+
+_METRICS = _descriptor.Descriptor(
+  name='Metrics',
+  full_name='Metrics',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='metrics', full_name='Metrics.metrics', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=72,
+  serialized_end=98,
+)
+
+
+_SERVERREPONSE = _descriptor.Descriptor(
+  name='ServerReponse',
+  full_name='ServerReponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='response', full_name='ServerReponse.response', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=100,
+  serialized_end=133,
 )
 
 DESCRIPTOR.message_types_by_name['Posts'] = _POSTS
 DESCRIPTOR.message_types_by_name['CheckReponse'] = _CHECKREPONSE
+DESCRIPTOR.message_types_by_name['Metrics'] = _METRICS
+DESCRIPTOR.message_types_by_name['ServerReponse'] = _SERVERREPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Posts = _reflection.GeneratedProtocolMessageType('Posts', (_message.Message,), {
@@ -113,6 +172,20 @@ CheckReponse = _reflection.GeneratedProtocolMessageType('CheckReponse', (_messag
   })
 _sym_db.RegisterMessage(CheckReponse)
 
+Metrics = _reflection.GeneratedProtocolMessageType('Metrics', (_message.Message,), {
+  'DESCRIPTOR' : _METRICS,
+  '__module__' : 'data_pb2'
+  # @@protoc_insertion_point(class_scope:Metrics)
+  })
+_sym_db.RegisterMessage(Metrics)
+
+ServerReponse = _reflection.GeneratedProtocolMessageType('ServerReponse', (_message.Message,), {
+  'DESCRIPTOR' : _SERVERREPONSE,
+  '__module__' : 'data_pb2'
+  # @@protoc_insertion_point(class_scope:ServerReponse)
+  })
+_sym_db.RegisterMessage(ServerReponse)
+
 
 
 _GETDATASERVICE = _descriptor.ServiceDescriptor(
@@ -122,8 +195,8 @@ _GETDATASERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=94,
-  serialized_end=146,
+  serialized_start=135,
+  serialized_end=187,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetData',
@@ -139,5 +212,31 @@ _GETDATASERVICE = _descriptor.ServiceDescriptor(
 _sym_db.RegisterServiceDescriptor(_GETDATASERVICE)
 
 DESCRIPTOR.services_by_name['GetDataService'] = _GETDATASERVICE
+
+
+_GETMETRICSERVICE = _descriptor.ServiceDescriptor(
+  name='GetMetricService',
+  full_name='GetMetricService',
+  file=DESCRIPTOR,
+  index=1,
+  serialized_options=None,
+  create_key=_descriptor._internal_create_key,
+  serialized_start=189,
+  serialized_end=248,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='GetMetric',
+    full_name='GetMetricService.GetMetric',
+    index=0,
+    containing_service=None,
+    input_type=_METRICS,
+    output_type=_SERVERREPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_GETMETRICSERVICE)
+
+DESCRIPTOR.services_by_name['GetMetricService'] = _GETMETRICSERVICE
 
 # @@protoc_insertion_point(module_scope)

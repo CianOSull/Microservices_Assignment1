@@ -20,13 +20,13 @@ class GetDataService(data_pb2_grpc.GetDataService):
 
     def talk_to_server():
         with grpc.insecure_channel('localhost:50052') as server_channel:
-            stub = data_pb2_grpc.GetDataServiceStub(server_channel)
+            stub = data_pb2_grpc.GetMetricServiceStub(server_channel)
 
             while True:
                 try: 
-                    response = stub.GetData(data_pb2.Posts(posts=message))
+                    response = stub.GetMetric(data_pb2.Metrics(metrics="Test"))
 
-                    print("Data.py: ", response.received)
+                    print("Client.py: ", response.received)
 
                 except KeyboardInterrupt:
                     print("\nKeyboardInterrupt")
@@ -78,6 +78,9 @@ class GetDataService(data_pb2_grpc.GetDataService):
         print("Total amount of posts removed so far:", self.removed_count)
         print("Post title with highest score:\n", self.highest_score_title, "\nHighest score:", self.highest_score)
         print("Total amount of over_18 accounts so far:", self.over_count)
+
+        # Contact the server
+        # self.talk_to_server()
 
         # I think this should return the message from proto
         return data_pb2.CheckReponse(received=True)
