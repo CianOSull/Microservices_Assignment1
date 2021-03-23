@@ -6,22 +6,10 @@ service GetDataService {
     rpc GetData (Posts) returns (CheckReponse) {}
 }
 
-service GetMetricService {
-    rpc GetMetric (Metrics) returns (ServerReponse) {}
-}
-
 message Posts {
     string posts = 1;
 }
 
 message CheckReponse {
-    bool received = 1;
-}
-
-message Metrics {
-    string metrics = 1;
-}
-
-message ServerReponse {
-    bool response = 1;
+    string received = 1;
 }

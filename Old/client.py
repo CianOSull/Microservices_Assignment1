@@ -41,6 +41,7 @@ def run():
                 response = stub.GetData(data_pb2.Posts(posts=message))
                 print("Data.py: ", response.received)
                 time.sleep(10)
+                
             except KeyboardInterrupt:
                 print("\nKeyboardInterrupt")
                 channel.unsubscribe(close)
