@@ -2,7 +2,7 @@ from random import randint
 import time
 
 def get_posts():
-    data = open("r_dataisbeautiful_posts.csv")
+    data = open("Client/r_dataisbeautiful_posts.csv")
 
     file_lines = data.readlines()
 

@@ -3,20 +3,20 @@ services:
   server:
     build:
       context: .
-      dockerfile: Server.Dockerfile
+      dockerfile: Server/Server.Dockerfile
     ports: 
       - "50051:50051"
   client:
     build:
       context: .
-      dockerfile: Client.Dockerfile
+      dockerfile: Client/Client.Dockerfile
     # I think this makes it so that the client will wait
     # for greeter server to be working before running
     # Also I think this uses the wait-for-it script to
     # do the waiting
     depends_on:
       - "server"
-    command: ["./wait-for-it.sh", "server:50051", "--", "python", "client.py"]
+    command: ["./wait-for-it.sh", "server:50051", "--", "python", "Client/client.py"]
   
   # This is setting up the redis server for storing the log information
   redis:
@@ -29,7 +29,7 @@ services:
   weblogs:
     build:
       context: .
-      dockerfile: WebLog.Dockerfile
+      dockerfile: WebLog/WebLog.Dockerfile
     ports:
       - "8080:5000"
     depends_on:

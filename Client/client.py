@@ -69,7 +69,7 @@ def run():
                     
                     end = time.time()
                     amount_of_time = end - start
-                    if 10 < amount_of_time:
+                    if 180 < amount_of_time:
                         start = time.time()
                         extra = True
 
@@ -104,7 +104,7 @@ def run():
 
                     response = stub.GetData(data_pb2.Posts(posts=metrics))
                     
-                    # Only reset extra after printing 
+                    # Only reset  
                     if extra:
                         # Reset it 
                         extra = False
