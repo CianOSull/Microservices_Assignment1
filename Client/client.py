@@ -65,15 +65,10 @@ def run():
                 # Metric number 4
                 if post_info[11] == 'True\n':
                     over_count += 1
-                
-                end = time.time()
-                amount_of_time = end - start
-                if 180 < amount_of_time:
-                    start = time.time()
-                    extra = True
 
+                # Time that has passed
                 metrics += "=============================<br>"
-                metrics += "Time counter: " + str(amount_of_time) + "<br>"
+                metrics += "Time counter: " + str((time.time() - start)) + "<br>"
                 metrics += "=============================<br>"
 
                 # Metric 1
@@ -98,17 +93,17 @@ def run():
                     highest_score_title = ""
                     
                     metrics += "=============================<br>"
+                    extra = False
 
                 # Metric 4
                 metrics += "Over 18 count: " + str(over_count) + "<br>"
                 metrics += "=============================<br>"
 
                 response = stub.GetData(data_pb2.Posts(posts=metrics))
-                
-                # Only reset  
-                if extra:
-                    # Reset it 
-                    extra = False
+            
+            if 180 < (time.time() - start):
+                start = time.time()
+                extra = True
 
             # response = stub.GetData(data_pb2.Posts(posts="Passed in String"))   
             # response = stub.GetData(data_pb2.Posts(posts=str(data_posts)))
