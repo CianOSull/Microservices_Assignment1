@@ -31,6 +31,6 @@ def get_posts():
 
         yield message
 
-        time.sleep(120)
+        time.sleep(2)
     
     data.close()

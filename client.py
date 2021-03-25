@@ -21,6 +21,10 @@ def run():
     # Total number of over 18
     over_count = 0
 
+    # Time Count
+    start = time.time()
+    extra = False
+
     while True:
         with grpc.insecure_channel('server:50051') as channel:
             stub = data_pb2_grpc.GetDataServiceStub(channel)
@@ -31,8 +35,7 @@ def run():
                 data_split.pop(-1)
                 
                 for post in data_split:
-                    metrics = ""
-
+                    metrics = "<br>"
 
                     post_info = post.split(",")
                     
@@ -63,18 +66,48 @@ def run():
                     # Metric number 4
                     if post_info[11] == 'True\n':
                         over_count += 1
+                    
+                    end = time.time()
+                    amount_of_time = end - start
+                    if 10 < amount_of_time:
+                        start = time.time()
+                        extra = True
+
+                    metrics += "=============================<br>"
+                    metrics += "Time counter: " + str(amount_of_time) + "<br>"
+                    metrics += "=============================<br>"
 
                     # Metric 1
-                    metrics += str(author_count) + "\n"
-                    # Metric 2 
-                    metrics += "Number of removed posts in last 3 minutes: " + str(removed_count) + "\n"
-                    # Metric 3
-                    metrics += "Highest score in last 3 minutes: " + str(highest_score) + "\n"
-                    metrics += "Title of Highest Score in last 3 minutes:\n" + highest_score_title + "\n"
-                    # Metric 4
-                    metrics += "Over 18 count: " + str(over_count) + "\n"
+                    metrics += "=============================<br>"
+                    # metrics += "Total count of posts for each author:<br>"
+                    for author_name in author_count.keys():
+                        metrics += " " + author_name + ": " + str(author_count[author_name]) + " @ "
+                    
+                    metrics += str(author_count) + "<br>"
+                    metrics += "=============================<br>"
 
-                    response = stub.GetData(data_pb2.Posts(posts="metrics"))
+                    if extra:
+                        # Metric 2 
+                        metrics += "Number of removed posts in last 3 minutes: " + str(removed_count) + "<br>"
+                        
+                        metrics += "=============================<br>"
+
+                        # Metric 3
+                        metrics += "Highest score in last 3 minutes: " + str(highest_score) + "<br>"
+                        metrics += "Title of Highest Score in last 3 minutes:\n" + highest_score_title + "<br>"
+                        
+                        metrics += "=============================<br>"
+
+                    # Metric 4
+                    metrics += "Over 18 count: " + str(over_count) + "<br>"
+                    metrics += "=============================<br>"
+
+                    response = stub.GetData(data_pb2.Posts(posts=metrics))
+                    
+                    # Only reset extra after printing 
+                    if extra:
+                        # Reset it 
+                        extra = False
 
             # response = stub.GetData(data_pb2.Posts(posts="Passed in String"))   
             # response = stub.GetData(data_pb2.Posts(posts=str(data_posts)))

@@ -12,7 +12,7 @@ def print_logs():
     output = ''
     try:
         conn = redis.StrictRedis(host='redis', port=6379)
-        for key in conn.scan_iter("log.greeter_server*"):
+        for key in conn.scan_iter("Post_Info:*"):
             value = str(conn.get(key))
             output += str(key) + value + '<br>'
     except Exception as ex:

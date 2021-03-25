@@ -19,8 +19,8 @@ class GetDataService(data_pb2_grpc.GetDataService):
 
         try:
             conn = redis.StrictRedis(host='redis', port=6379)
-            # conn.set(request.posts)
-            conn.set("log.greeter_server." + str(datetime.datetime.now()), "Client Says: \n" + request.posts)
+            # conn.set(request)
+            conn.set("Post_Info:." + str(datetime.datetime.now()), ":" + request.posts)
         
         except Exception as ex:
             print('Error:', ex)
