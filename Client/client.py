@@ -88,12 +88,14 @@ def run():
                 if extra:
                     # Metric 2 
                     metrics += "Number of removed posts in last 3 minutes: " + str(removed_count) + "<br>"
-                    
+                    removed_count = 0
                     metrics += "=============================<br>"
 
                     # Metric 3
                     metrics += "Highest score in last 3 minutes: " + str(highest_score) + "<br>"
                     metrics += "Title of Highest Score in last 3 minutes:\n" + highest_score_title + "<br>"
+                    highest_score = 0
+                    highest_score_title = ""
                     
                     metrics += "=============================<br>"
 
