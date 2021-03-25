@@ -1,10 +1,12 @@
 from random import randint
 import time
+import codecs
 
 def get_posts():
-    data = open("Client/r_dataisbeautiful_posts.csv")
+    # data = open("Client/r_dataisbeautiful_posts.csv")
+    data_input_stream = codecs.open("Client/r_dataisbeautiful_posts.csv", "r", encoding='utf-8')
 
-    file_lines = data.readlines()
+    file_lines = data_input_stream.readlines()
 
     # The first line of the file is the headings
     # id, title, score, author, author_flair_text, removed_by, total_awards_received, awarders, created_utc, full_link, num_comments,over_18
