@@ -26,6 +26,10 @@ def get_posts():
             # Take random posts from the dataset
             line = file_lines[randint(0, size_of_data)]
 
+            # If the line is empty then just keep going
+            if len(line) == 0:
+                continue
+
             # Construct the message string
             message += line + " @ "
         
