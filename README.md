@@ -1,7 +1,7 @@
 # Microservices_Assignment1
 First assignment about using Docker and GRPC to create 3 microservices.
 
-Project Specification:<br />
+## Project Specification:<br />
 Overview<br />
 Thus far, we have covered the concept of microservices, bounded contexts and various architectural and integration concepts. We have also covered tools and technologies that can help us build and deploy microservices (see lab documents 1 to 4). This assignment requires that you analyse a requirement and devise an appropriate architecture and implementation.<br />
 
